@@ -31,7 +31,7 @@ z_max = len(line1)
 
 # We build our table and fill it with empty entries (value = 0 and direction UNSET)
 table = []
-for _ in range(x_max + 1):
+for i in range(x_max + 1):
     a = []
     for _ in range(y_max + 1):
         b = []
@@ -66,33 +66,36 @@ for x in range(1, x_max + 1):
 
 longest = []
 
-# Now that our table is filled out, we trace back from the last entry and
-# reconstruct our longest subsequence.
-current_x = x_max
-current_y = y_max
-current_z = z_max
-while table[current_x][current_y][current_z].val is not 0:
-    current_direction = table[current_x][current_y][current_z].direction
-    if current_direction == Direction.XYZ:
-        longest.append(line3[current_x - 1])
-        current_x = current_x - 1
-        current_y = current_y - 1
-        current_z = current_z - 1
-    elif current_direction == Direction.X:
-        current_x = current_x - 1
-    elif current_direction == Direction.Y:
-        current_y = current_y - 1
-    elif current_direction == Direction.Z:
-        current_z = current_z - 1
-    elif current_direction == Direction.XY:
-        current_x = current_x - 1
-        current_y = current_y - 1
-    elif current_direction == Direction.XZ:
-        current_x = current_x - 1
-        current_z = current_z - 1
-    elif current_direction == Direction.YZ:
-        current_y = current_y - 1
-        current_z = current_z - 1
+print(table[x_max][y_max][z_max].val)
 
-longest.reverse()
-print(''.join(longest))
+# Now that our table is filled out, we can trace back from the last entry and
+# reconstruct a longest subsequence. The commented code below prints out a
+# longest possible subsequence.
+# current_x = x_max
+# current_y = y_max
+# current_z = z_max
+# while table[current_x][current_y][current_z].val is not 0:
+    # current_direction = table[current_x][current_y][current_z].direction
+    # if current_direction == Direction.XYZ:
+        # longest.append(line3[current_x - 1])
+        # current_x = current_x - 1
+        # current_y = current_y - 1
+        # current_z = current_z - 1
+    # elif current_direction == Direction.X:
+        # current_x = current_x - 1
+    # elif current_direction == Direction.Y:
+        # current_y = current_y - 1
+    # elif current_direction == Direction.Z:
+        # current_z = current_z - 1
+    # elif current_direction == Direction.XY:
+        # current_x = current_x - 1
+        # current_y = current_y - 1
+    # elif current_direction == Direction.XZ:
+        # current_x = current_x - 1
+        # current_z = current_z - 1
+    # elif current_direction == Direction.YZ:
+        # current_y = current_y - 1
+        # current_z = current_z - 1
+# 
+# longest.reverse()
+# print(''.join(longest))
