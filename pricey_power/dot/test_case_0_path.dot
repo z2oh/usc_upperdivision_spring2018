@@ -1,0 +1,5 @@
+graph {
+    0 -- 1[color="red", penwidth="3.0", label="10", weight="10"]
+    0 -- 2[label="15", weight="15"]
+    1 -- 2[color="red", penwidth="3.0", label="5", weight="5"]
+}
