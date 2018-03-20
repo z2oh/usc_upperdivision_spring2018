@@ -25,9 +25,21 @@ for point in points:
 # relative to p0
 points.sort(key = lambda x: x[2])
 
+# If two points have the same radial angle from p0, the point closer to p0
+# (the one with smaller x and y coordiates) can be removed as it cannot be
+# part of our convex hull. This reduces the number of points we need to process
+# later.
+removal_indices = []
+for i in range(len(points) - 1):
+    if points[i][2] == points[i+1][2]:
+        removal_indices.append(i)
+
+for index in reversed(removal_indices):
+    points.pop(index)
+
 # We perform Graham's scan on the points to determine the convex hull.
 stack = [p0, points[0], points[1]]
-for i in range(2, n-1):
+for i in range(2, len(points)):
     p3 = points[i]
     cross = -1
     while cross < 0:
@@ -51,7 +63,7 @@ area = 0
 for i in range(1, len(stack)):
     area += stack[i-1][0]*stack[i][1] - stack[i][0]*stack[i-1][1]
 # Account for the wrapping from the last point to the first...
-area += stack[0][0]*stack[-1][1] - stack[-1][0]*stack[0][1]
+area += stack[-1][0]*stack[0][1] - stack[0][0]*stack[-1][1]
 area = area / 2
 
 print(area)
