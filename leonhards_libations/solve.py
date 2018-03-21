@@ -16,7 +16,7 @@ line = input()
 
 n = -1
 if len(line) == 1:
-    n = int(line)
+    n = line
 
 if n == '1':
     print("2.000000")
