@@ -1,5 +1,5 @@
 t = int(input())
-for _ in t:
+for _ in range(t):
     n = int(input())
     heights = list(map(int, input().split(" ")))
     expect_next = [False] * (n + 2)
