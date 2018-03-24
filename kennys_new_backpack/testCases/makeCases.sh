@@ -1,7 +1,7 @@
 #!/bin/sh
 PAD="2"
 
-for n in $(seq 0 24)
+for n in $(seq 3 24)
 do
 	num=$(printf "%0*d" "$PAD" "$n")
 	INPUT_FILE="./input/input$num.txt"

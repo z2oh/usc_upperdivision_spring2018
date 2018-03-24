@@ -1,53 +1,33 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.lang.Math;
-//import java.lang.Math.pow;
 public class solution
 {
-public static final int MAX_SIZE = 40;
-public static final int BASE = 3;
-public static ArrayList<Character> DIRECTIONS = new ArrayList<Character>(MAX_SIZE);
 	public static void main(String[] args)
 	{
 		Scanner sc = new Scanner(System.in);
-
-		int n = sc.nextInt();
-		int sum = 1;
-		int level = 1;
-		while(n > sum)
+		String directs = new String();
+		long n = sc.nextLong();
+		int mod;
+		String step;
+		while(n > 1)
 		{
-			sum += (int) Math.pow(BASE, level++);
-		}
+			mod = (int) Math.floorMod(n,3);
+			//mod = (int) n % 3;
+			n = (n + 1) / 3;
+			if(mod == 0)
+			{
+				step = "M";
+			}
+			else if(mod == 1)
+			{
+				step = "R";
+			}
+			else//2
+			{
+				step = "L";
+			}
 
-		int index = n - (sum - (int) Math.pow(BASE, (level -1)));
-
-		while(level-- > 1)
-		{
-			add_direction(index % BASE);
-			index = (int) Math.ceil(index / BASE);
+			directs = step + directs;
 		}
-		
-		for(int i = DIRECTIONS.size()-1; i >-1; i--)
-		{
-			System.out.print(DIRECTIONS.get(i));
-		}
-		System.out.println();
+		System.out.println(directs);
 	}
-
-	public static void add_direction(int direct)
-	{
-		if(direct == 0)
-		{
-			DIRECTIONS.add('R');
-		}
-		else if(direct == 1)
-		{
-			DIRECTIONS.add('L');
-		}
-		else//2
-		{
-			DIRECTIONS.add('M');
-		}
-	}
-
 }
